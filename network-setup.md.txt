@@ -1,0 +1,12 @@
+Router0: 1941
+
+Switch0: 2960 IOS15
+Server0: Server-PT (168.90.0.2)
+PC0: PC-PT (168.90.0.4)
+PC1: PC-PT (168.90.0.5)
+Laptop0: Laptop-PT (168.90.0.3)
+
+Switch1: 2960 IOS15
+Server1: Server-PT (210.3.14.2)
+PC2: PC-PT (210.3.14.3)
+Server2: Server-PT (210.3.14.4)
