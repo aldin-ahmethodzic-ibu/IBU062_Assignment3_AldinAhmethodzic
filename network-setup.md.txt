@@ -12,3 +12,46 @@ Server1: Server-PT (210.3.14.2)
 PC2: PC-PT (210.3.14.3)
 Server2: Server-PT (210.3.14.4)
 PC4: PC-PT (210.3.14.5)
+
+DHCP Setup
+
+Click on the router, go to the CLI tab and enter commands
+
+enable
+configure terminal
+
+Configure DHCP for Devices on Switch 1 by creating DHCP pool and excluding the Router's IP Address
+
+ip dhcp pool SWITCH1_POOL
+network 168.90.0.0 255.255.0.0
+default-router 168.90.0.1
+dns-server 8.8.8.8
+ip dhcp excluded-address 168.90.0.1
+
+Similarly, configure DHCP for Devices on Switch 2
+
+ip dhcp pool SWITCH2_POOL
+network 210.3.14.0 255.255.255.0
+default-router 210.3.14.1
+dns-server 8.8.8.8
+ip dhcp excluded-address 210.3.14.1
+
+Finally, assign IP addresses to router interfaces so they can act as gateways for our networks
+
+For Switch 1 (GigabitEthernet0/0):
+
+interface GigabitEthernet0/0
+ip address 168.90.0.1 255.255.0.0
+no shutdown
+exit
+
+For Switch 2 (GigabitEthernet0/1):
+
+interface GigabitEthernet0/1
+ip address 210.3.14.1 255.255.255.0
+no shutdown
+exit
+
+Verify DHCP by going to each PC, Laptop and Server, opening Desktop > IP Configuration and selecting DHCP
+Switch 1 devices received range 168.90.x.x with gateway 168.90.0.1
+Switch 2 devices received range 210.3.14.x with gateway 210.3.14.1
